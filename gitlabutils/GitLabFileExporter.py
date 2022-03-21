@@ -3,7 +3,7 @@ import time
 from pathlib import Path
 import gitlab
 
-import config
+from gitlabutils import config
 
 URL = config.git_lab_url
 TOKEN = config.git_lab_token
