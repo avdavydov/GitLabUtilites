@@ -1,7 +1,8 @@
 import gitlab
 from pathlib import Path
 
-from gitlabutils import config
+import config
+
 URL = config.git_lab_url
 TOKEN = config.git_lab_token
 GROUP_ID = config.group_id
