@@ -7,6 +7,8 @@ URL = config.git_lab_url
 TOKEN = config.git_lab_token
 GROUP_ID = config.group_id
 BRANCH_NAME = config.branch_name
+MAIN_DIR = config.main_dir
+OUTPUT_FILE_NAME = config.output_file_name
 
 gl = gitlab.Gitlab(URL, TOKEN)
 
@@ -24,7 +26,7 @@ def main():
     group = gl.groups.get(GROUP_ID, lazy=True)
     projects = group.projects.list(include_subgroups=True, all=True)
 
-    with open(Path(Path.home(), 'tmp', 'SM-27061.csv'), 'w+') as file:
+    with open(Path(Path.home(), MAIN_DIR, OUTPUT_FILE_NAME), 'w+') as file:
         for project in projects:
             print(project.path_with_namespace, project.id, ', '.join(sorted(getCommiters(project.id, gl, BRANCH_NAME))), file=file,
                   sep=';')
