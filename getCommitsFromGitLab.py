@@ -1,5 +1,6 @@
-import gitlab
 from pathlib import Path
+
+import gitlab
 
 import config
 
@@ -22,15 +23,18 @@ def getCommiters(project_id, gl, branch_name):
             committers.add(commit.committer_name)
     return committers
 
+
 def main():
     group = gl.groups.get(GROUP_ID, lazy=True)
     projects = group.projects.list(include_subgroups=True, all=True)
 
     with open(Path(Path.home(), MAIN_DIR, OUTPUT_FILE_NAME), 'w+') as file:
         for project in projects:
-            print(project.path_with_namespace, project.id, ', '.join(sorted(getCommiters(project.id, gl, BRANCH_NAME))), file=file,
+            print(project.path_with_namespace, project.id, ', '.join(sorted(getCommiters(project.id, gl, BRANCH_NAME))),
+                  file=file,
                   sep=';')
     print('Done.')
+
 
 if __name__ == '__main__':
     main()
