@@ -1,4 +1,4 @@
-# GitLabExporter
+# GitLabUtils
 
 Проект предназначен для выполнения следующих задач:
 1. Экспорт всех файлов группы проектов GitLab - `GitLabFileExporter.py`
